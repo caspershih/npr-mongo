@@ -1,6 +1,6 @@
 // dependencies
 const express = require("express");
-const bodyParser = requre("body-parser");
+const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
@@ -24,7 +24,18 @@ app.use(express.static("public"));
 // connect mongoose to mongoDB
 mongoose.connect("mongodb://localhost/nprdb");
 
+// GET to scrape npr website
+app.get("/scrape", function(req, res) {
+    request("https://www.npr.org/sections/news/", function(err, res, html) {
+        var $ = cheerio.load(html);
 
+        $("title h2").each(function(i, element) {
+
+            var title = $("element").children("a").text();
+            var link = $("element").children("a").attr("href");
+        })
+    })
+})
 
 // server up and running
 app.listen(PORT, function() {
