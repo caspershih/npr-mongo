@@ -1,0 +1,27 @@
+{
+  "name": "npr-mongo",
+  "version": "1.0.0",
+  "description": "This repo is for the UCI Coding Bootcamp week 18 assignment. The primary technology applied for this assignment is mongoDB.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caspershih/npr-mongo.git"
+  },
+  "author": "Casper S.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caspershih/npr-mongo/issues"
+  },
+  "homepage": "https://github.com/caspershih/npr-mongo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.2.9",
+    "request": "^2.88.0"
+  }
+}
