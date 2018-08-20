@@ -26,16 +26,55 @@ mongoose.connect("mongodb://localhost/nprdb");
 
 // GET to scrape npr website
 app.get("/scrape", function(req, res) {
-    request("https://www.npr.org/sections/news/", function(err, res, html) {
-        var $ = cheerio.load(html);
+    
+    app.get("https://www.npr.org/sections/news/").then(function(response) {
 
-        $("title h2").each(function(i, element) {
+    var $ = cheerio.load(response.data);
 
-            var title = $("element").children("a").text();
-            var link = $("element").children("a").attr("href");
-        })
+        $("h2 title").each(function(i, element) {
+            var result = {};
+
+            result.title = $(this).children("a").text();
+            result.link = $(this).children("a").attr("href");
+
+            db.Article.create(result)
+                .then(function(dbArticle) {
+                    
+                    console.log(dbArticle);
+                })
+            .catch(function(err) {
+                return res.json(err);
+            });
+        });
+
+        res.send("Scrape Complete");
+    });
+});
+
+app.get("/articles", function(req, res) {
+
+    db.Article.find({})
+    .then(function(dbArticle) {
+
+        res.json(dbArticle);
     })
-})
+
+    .catch(function(err) {
+
+        res.json(err);
+    });
+});
+
+app.get("/article/:id", function(req, res) {
+    db.Article.findOne({ _id: req.params.id})
+        .populate("note")
+        .then(function(dbArticle) {
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
 
 // server up and running
 app.listen(PORT, function() {
