@@ -27,12 +27,9 @@ mongoose.connect("mongodb://localhost/nprdb");
 // GET to scrape npr website
 app.get("/scrape", function(req, res) {
     request("https://www.npr.org/sections/news/", function(err, res, html) {
-        
-        var $ = cheerio.load(response.data);
+        var $ = cheerio.load(html);
 
         $("title h2").each(function(i, element) {
-
-            var result = {};
 
             var title = $("element").children("a").text();
             var link = $("element").children("a").attr("href");
