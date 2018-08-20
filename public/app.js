@@ -18,13 +18,44 @@ $(document).on("click", "p", function() {
     .then(function(data) {
         
         console.log(data)
-        
-        $("#comments").append("<h2>" + data.title + "</h2>");
 
         $("#comments").append("<h2>" + data.title + "</h2>");
 
-        $("#comments").append("<h2>" + data.title + "</h2>");
+        $("#comments").append("<input id = 'titleinput' name = 'title'>");
 
-        $("#comments").append("<h2>" + data.title + "</h2>");
+        $("#comments").append("<textarea id = 'bodyinput' name = 'body'></textarea>");
+
+        $("#comments").append("<button data-id='" + data._id + "' id = 'savecomment'>Save Comment</button>");
+
+        if (data.comment) {
+            
+            $("#titleinput").val(data.note.title);
+
+            $("#bodyinput").val(data.comment.body);
+        }
+    });
+});
+
+// by clicking the save button
+$(document).on("click", "#savecomment", function() {
+    
+    const thisId = $(this).attr("data-id");
+
+    $.ajax( {
+        method: "POST",
+        url: "/articles/" + thisId,
+        data: {
+            title: $("#titleinput").val(),
+            body: $("bodyinput").val()
+        }
     })
-})
+
+    .then(function(data) {
+        console.log(data);
+
+        $("#comments").empty();
+    });
+
+    $("#titleinput").val("");
+    $("bodyinput").val("");
+});
