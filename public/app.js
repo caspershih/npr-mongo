@@ -1,3 +1,6 @@
+// before the search begin
+$(".results").html("Please Click Scrape To Receive News Articles");
+
 // get article as JSON file
 $.getJSON("/article", function(data) { 
 
