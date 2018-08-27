@@ -1,5 +1,6 @@
 // dependencies
 const express = require("express");
+const mongojs = require("mongojs");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -11,7 +12,11 @@ const cheerio = require("cheerio");
 const db = require("/model");
 const PORT = 3000;
 
+// start express
 const app = express();
+
+const databaseUrl = "nprdb";
+const collections = ["articles"];
 
 // use morgan
 app.use(logger("dev"));
