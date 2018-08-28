@@ -3,13 +3,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const request = require("request");
 
 // scraping tools
 const cheerio = require("cheerio");
 
-const db = require("/model");
+const db = require("./models");
 const PORT = 3000;
 
+// start express
 const app = express();
 
 // use morgan

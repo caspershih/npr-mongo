@@ -20,17 +20,12 @@ $(document).on("click", "p", function() {
         console.log(data)
 
         $("#comments").append("<h2>" + data.title + "</h2>");
-
         $("#comments").append("<input id = 'titleinput' name = 'title'>");
-
         $("#comments").append("<textarea id = 'bodyinput' name = 'body'></textarea>");
-
         $("#comments").append("<button data-id='" + data._id + "' id = 'savecomment'>Save Comment</button>");
 
-        if (data.comment) {
-            
+        if (data.comment) {  
             $("#titleinput").val(data.note.title);
-
             $("#bodyinput").val(data.comment.body);
         }
     });
