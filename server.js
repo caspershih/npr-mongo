@@ -23,8 +23,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // express
 app.use(express.static("public"));
 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
 // connect mongoose to mongoDB
-mongoose.connect("mongodb://localhost/nprdb");
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+    useMongoClient: true
+});
 
 // GET to scrape npr website
 app.get("/scrape", function(req, res) {
