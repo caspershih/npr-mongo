@@ -1,11 +1,12 @@
 // get article as JSON file
 $.getJSON("/article", function(data) { 
-
+    // forloop
     for (var i = 0; i < data.length; i++) {
         $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
     }
 });
 
+// 
 $(document).on("click", "p", function() {
     $("#comments").empty();
     var thisId = $(this).attr("data-id");
@@ -25,7 +26,7 @@ $(document).on("click", "p", function() {
         $("#comments").append("<button data-id='" + data._id + "' id = 'savecomment'>Save Comment</button>");
 
         if (data.comment) {  
-            $("#titleinput").val(data.note.title);
+            $("#titleinput").val(data.comment.title);
             $("#bodyinput").val(data.comment.body);
         }
     });
