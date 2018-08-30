@@ -32,7 +32,7 @@ $(document).on("click", "p", function() {
     });
 });
 
-// by clicking the save button
+// save comment to article
 $(document).on("click", "#savecomment", function() {
     
     const thisId = $(this).attr("data-id");
