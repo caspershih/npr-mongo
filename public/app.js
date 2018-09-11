@@ -1,4 +1,4 @@
-// get article as JSON file
+// get article as JSON file from npr
 $.getJSON("/article", function(data) { 
     // forloop
     for (var i = 0; i < data.length; i++) {

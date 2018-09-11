@@ -58,6 +58,7 @@ app.get("/scrape", function(req, res) {
     });
 });
 
+// scrape into mongodb
 app.get("/articles", function(req, res) {
 
     db.Article.find({})
